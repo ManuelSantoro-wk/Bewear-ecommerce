@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import cep from "cep-promise";
-import { cpf as nifValidator } from "cpf-cnpj-validator";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -127,7 +126,6 @@ const Addresses = ({
   // Form: editar (estado separado)
   const editForm = useForm<FormValues>({
     resolver: zodResolver(schema),
-    type: "edit",
     defaultValues: {
       email: "",
       fullName: "",
