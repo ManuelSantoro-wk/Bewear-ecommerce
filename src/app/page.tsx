@@ -8,6 +8,7 @@ import ProductList from "@/components/common/product-list";
 import PromoGrid from "@/components/common/promo-grid";
 import { db } from "@/db";
 import { productTable } from "@/db/schema";
+import Script from "next/script";
 
 const Home = async () => {
   const products = await db.query.productTable.findMany({
@@ -21,6 +22,12 @@ const Home = async () => {
 
   return (
     <>
+      <Script
+        src="https://cdn.popupsmart.com/bundle.js"
+        data-id="990888"
+        strategy="afterInteractive"
+      />
+
       <Header />
 
       <main className="mx-auto max-w-6xl space-y-8 px-0 pb-10 md:px-4">
