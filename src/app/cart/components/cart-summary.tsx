@@ -40,7 +40,7 @@ const CartSummary = ({
             </p>
           </div>
           <div className="flex items-center justify-between">
-            <p className="text-sm">Frete</p>
+            <p className="text-sm">Entrega</p>
             <p className="text-sm font-medium text-slate-600">GRÁTIS</p>
           </div>
           <div className="flex items-center justify-between">

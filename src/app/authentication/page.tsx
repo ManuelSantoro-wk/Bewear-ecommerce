@@ -15,10 +15,16 @@ const Authentication = async () => {
           <div className="md:col-span-7 lg:col-span-6">
             <Tabs defaultValue="sign-in" className="w-full">
               <TabsList className="w-full justify-start rounded-2xl">
-                <TabsTrigger value="sign-in" className="rounded-xl px-4">
+                <TabsTrigger
+                  value="sign-in"
+                  className="cursor-pointer rounded-xl px-4"
+                >
                   Entrar
                 </TabsTrigger>
-                <TabsTrigger value="sign-up" className="rounded-xl px-4">
+                <TabsTrigger
+                  value="sign-up"
+                  className="cursor-pointer rounded-xl px-4"
+                >
                   Criar conta
                 </TabsTrigger>
               </TabsList>

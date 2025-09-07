@@ -317,7 +317,7 @@ const Addresses = ({
                     <Button
                       variant="outline"
                       size="sm"
-                      className="rounded-full"
+                      className="cursor-pointer rounded-full"
                       onClick={() => {
                         setEditingAddress(address);
                         setEditOpen(true);
@@ -334,7 +334,9 @@ const Addresses = ({
                 <CardContent className="py-4">
                   <div className="flex items-center gap-3">
                     <RadioGroupItem value="add_new" id="add_new" />
-                    <Label htmlFor="add_new">Adicionar nova morada</Label>
+                    <Label className="cursor-pointer" htmlFor="add_new">
+                      Adicionar nova morada
+                    </Label>
                   </div>
                 </CardContent>
               </Card>
@@ -346,7 +348,7 @@ const Addresses = ({
             <div className="mt-4">
               <Button
                 onClick={handleGoToPayment}
-                className="w-full rounded-full"
+                className="w-full cursor-pointer rounded-full"
                 disabled={updateCartShippingAddressMutation.isPending}
               >
                 {updateCartShippingAddressMutation.isPending

@@ -57,6 +57,7 @@ const ConfirmationPage = async () => {
                     </p>
                   </CardContent>
                 </Card>
+                <CardTitle>Metodo de Pagamento</CardTitle>
 
                 <FinishOrderButton />
               </CardContent>

@@ -5,6 +5,7 @@ import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Visa } from "react-pay-icons";
 
 import { createCheckoutSession } from "@/actions/create-checkout-session";
 import { Button } from "@/components/ui/button";
@@ -40,7 +41,7 @@ const FinishOrderButton = () => {
   return (
     <>
       <Button
-        className="w-full rounded-full"
+        className="cursor-pointer bg-transparent text-black hover:bg-[#cccccc]"
         size="lg"
         onClick={handleFinishOrder}
         disabled={finishOrderMutation.isPending}
@@ -48,7 +49,7 @@ const FinishOrderButton = () => {
         {finishOrderMutation.isPending && (
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         )}
-        Finalizar compra
+        <Visa /> Credit/Debit Card
       </Button>
 
       <Dialog open={successDialogIsOpen} onOpenChange={setSuccessDialogIsOpen}>

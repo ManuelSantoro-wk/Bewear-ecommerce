@@ -154,7 +154,7 @@ export const Header = () => {
                         isActive("/my-orders") ? "text-primary" : ""
                       }`}
                     >
-                      <Package className="h-4 w-4" /> Meus Pedidos
+                      <Package className="h-4 w-4" /> Os Meus Pedidos
                     </Link>
 
                     <Separator className="my-2" />
@@ -178,7 +178,7 @@ export const Header = () => {
             <div className="hidden md:block">
               {session?.user ? (
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center gap-2 text-sm text-slate-700 hover:text-black">
+                  <DropdownMenuTrigger className="flex cursor-pointer items-center gap-2 text-sm text-slate-700 hover:text-black">
                     <User2 className="h-4 w-4" />
                     Olá,{" "}
                     <span className="font-semibold">
@@ -201,13 +201,13 @@ export const Header = () => {
                       </div>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                      <Link href="/my-orders">Meus pedidos</Link>
+                    <DropdownMenuItem className="cursor-pointer" asChild>
+                      <Link href="/my-orders">Os Meus pedidos</Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                       onClick={() => authClient.signOut()}
-                      className="text-red-600 focus:text-red-700"
+                      className="cursor-pointer text-red-600 focus:text-red-700"
                     >
                       <LogOutIcon className="mr-2 h-4 w-4" /> Sair da conta
                     </DropdownMenuItem>
@@ -215,12 +215,12 @@ export const Header = () => {
                 </DropdownMenu>
               ) : (
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center gap-2 text-sm text-slate-700 hover:text-black">
+                  <DropdownMenuTrigger className="flex cursor-pointer items-center gap-2 text-sm text-slate-700 hover:text-black">
                     <User2 className="h-4 w-4" />
                     Fazer login
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start" className="w-56">
-                    <DropdownMenuItem asChild>
+                    <DropdownMenuItem asChild className="cursor-pointer">
                       <Link href="/authentication">
                         <LogInIcon className="mr-2 h-4 w-4" /> Fazer login
                       </Link>
@@ -250,8 +250,8 @@ export const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="rounded-2xl"
-              aria-label="Buscar"
+              className="cursor-pointer rounded-2xl"
+              aria-label="Portfolio"
               onClick={() => setOpenSearch(true)}
             >
               <Search className="h-5 w-5" />

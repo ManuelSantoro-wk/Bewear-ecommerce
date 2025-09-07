@@ -53,7 +53,7 @@ export const Cart = () => {
           variant="outline"
           size="icon"
           aria-label="Abrir carrinho"
-          className="relative"
+          className="relative cursor-pointer"
         >
           <ShoppingBasketIcon />
           {totalCount > 0 && (
@@ -83,7 +83,7 @@ export const Cart = () => {
                       <AlertCircle className="h-4 w-4" />
                       <AlertTitle>Carrinho vazio</AlertTitle>
                       <AlertDescription>
-                        Ops! Você ainda não adicionou produtos ao carrinho.
+                        Ups! Ainda não adicionou produtos ao carrinho.
                       </AlertDescription>
                     </Alert>
 
@@ -92,7 +92,7 @@ export const Cart = () => {
                       className="rounded-full"
                       onClick={() => setOpen(false)}
                     >
-                      <Link href="/">Continuar comprando</Link>
+                      <Link href="/">Continuar a comprar</Link>
                     </Button>
                   </div>
                 ) : (
@@ -145,7 +145,7 @@ export const Cart = () => {
                 asChild
                 onClick={() => setOpen(false)}
               >
-                <Link href="/cart/identification">Finalizar compra</Link>
+                <Link href="/cart/identification">Finalizar a compra</Link>
               </Button>
             </div>
           )}
