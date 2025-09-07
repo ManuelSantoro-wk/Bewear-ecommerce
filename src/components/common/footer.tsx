@@ -4,7 +4,13 @@ const Footer = () => {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-1 text-center md:flex-row md:justify-between md:gap-4 md:text-left">
         <div>
           <p className="text-xs font-medium tracking-wide">
-            © {new Date().getFullYear()} BEWEAR
+            © {new Date().getFullYear()}{" "}
+            <a
+              href="https://manuelsantoro.rf.gd/"
+              className="text-xs transition-colors hover:text-[#474747]"
+            >
+              Manuel Santoro
+            </a>
           </p>
           <p className="text-muted-foreground text-xs font-medium">
             Todos os direitos reservados.
@@ -14,19 +20,19 @@ const Footer = () => {
         <nav className="mt-3 flex gap-4 md:mt-0">
           <a
             href="/privacy"
-            className="text-muted-foreground hover:text-primary text-xs transition-colors"
+            className="text-muted-foreground text-xs transition-colors hover:text-[#474747]"
           >
             Política de Privacidade
           </a>
           <a
             href="/terms"
-            className="text-muted-foreground hover:text-primary text-xs transition-colors"
+            className="text-muted-foreground text-xs transition-colors hover:text-[#474747]"
           >
             Termos de Uso
           </a>
           <a
             href="/contact"
-            className="text-muted-foreground hover:text-primary text-xs transition-colors"
+            className="text-muted-foreground text-xs transition-colors hover:text-[#474747]"
           >
             Contato
           </a>
