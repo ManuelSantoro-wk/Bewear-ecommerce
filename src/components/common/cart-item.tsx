@@ -73,7 +73,7 @@ const CartItem = ({
           </p>
           <div className="flex w-[80px] items-center justify-between rounded-lg border p-1">
             <Button
-              className="h-4 w-4"
+              className="h-4 w-4 cursor-pointer"
               variant="ghost"
               onClick={handleDecreaseQuantityClick}
             >
@@ -81,7 +81,7 @@ const CartItem = ({
             </Button>
             <p className="text-xs font-medium">{quantity}</p>
             <Button
-              className="h-4 w-4"
+              className="h-4 w-4 cursor-pointer"
               variant="ghost"
               onClick={handleIncreaseQuantityClick}
             >
@@ -91,7 +91,12 @@ const CartItem = ({
         </div>
       </div>
       <div className="flex flex-col items-end justify-center gap-2">
-        <Button variant="outline" size="icon" onClick={handleDeleteClick}>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={handleDeleteClick}
+          className="cursor-pointer"
+        >
           <TrashIcon />
         </Button>
         <p className="text-sm font-bold">
