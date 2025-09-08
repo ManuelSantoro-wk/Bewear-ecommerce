@@ -48,7 +48,7 @@ const ProductList = ({
             <Button
               variant="outline"
               size="icon"
-              className="rounded-full"
+              className="cursor-pointer rounded-full"
               onClick={() => scrollBy(-320)}
               aria-label="Scroll para a esquerda"
             >
@@ -57,7 +57,7 @@ const ProductList = ({
             <Button
               variant="outline"
               size="icon"
-              className="rounded-full"
+              className="cursor-pointer rounded-full"
               onClick={() => scrollBy(320)}
               aria-label="Scroll para a direita"
             >

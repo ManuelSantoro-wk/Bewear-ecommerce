@@ -21,6 +21,7 @@ const ProductActions = ({ productVariantId }: ProductActionsProps) => {
         <h3 className="mb-2 text-sm font-medium">Quantidade</h3>
         <div className="flex w-[120px] items-center justify-between rounded-xl border">
           <Button
+            className="cursor-pointer"
             size="icon"
             variant="ghost"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -30,6 +31,7 @@ const ProductActions = ({ productVariantId }: ProductActionsProps) => {
           </Button>
           <p className="w-8 text-center text-sm font-semibold">{quantity}</p>
           <Button
+            className="cursor-pointer"
             size="icon"
             variant="ghost"
             onClick={() => setQuantity((q) => q + 1)}
