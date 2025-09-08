@@ -91,7 +91,7 @@ const SignInForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Digite o seu email" {...field} />
+                    <Input placeholder="email@example.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -110,7 +110,7 @@ const SignInForm = () => {
                     <FormControl>
                       <div className="relative">
                         <Input
-                          placeholder="Digite sua senha"
+                          placeholder="Password"
                           type={showPassword ? "text" : "password"}
                           {...field}
                           className="pr-10"

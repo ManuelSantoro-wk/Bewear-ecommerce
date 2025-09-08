@@ -70,7 +70,7 @@ const SignUpForm = () => {
             });
           }
           toast.error(
-            "Erro ao criar conta. Tente novamente. " + error.error.message,
+            "Erro ao criar a conta. Tente novamente. " + error.error.message,
           );
         },
       },
@@ -82,7 +82,7 @@ const SignUpForm = () => {
       <CardHeader>
         <CardTitle>Criar Conta</CardTitle>
         <CardDescription>
-          Crie uma conta para começar a usar nossos serviços.
+          Crie uma conta para começar a usar os nossos serviços.
         </CardDescription>
       </CardHeader>
 
@@ -97,7 +97,7 @@ const SignUpForm = () => {
                   <FormLabel>Nome</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Digite seu nome"
+                      placeholder="Escreva o seu nome"
                       type="text"
                       {...field}
                     />
@@ -134,7 +134,7 @@ const SignUpForm = () => {
                     <FormLabel>Senha</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Digite sua senha"
+                        placeholder="Password"
                         type="password"
                         {...field}
                       />
@@ -152,7 +152,7 @@ const SignUpForm = () => {
                     <FormLabel>Confirmação de Senha</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Digite novamente sua senha"
+                        placeholder="Password novamente"
                         type="password"
                         {...field}
                       />
