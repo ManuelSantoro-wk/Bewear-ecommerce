@@ -206,7 +206,10 @@ export const Header = () => {
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
-                      onClick={() => authClient.signOut()}
+                      onClick={async () => {
+                        await authClient.signOut();
+                        router.push("/authentication"); // redireciona para a página de login
+                      }}
                       className="cursor-pointer text-red-600 focus:text-red-700"
                     >
                       <LogOutIcon className="mr-2 h-4 w-4" /> Sair da conta
