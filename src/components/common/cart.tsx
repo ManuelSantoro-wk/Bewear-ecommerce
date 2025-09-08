@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertCircle, ShoppingBasketIcon } from "lucide-react";
+import { AlertCircle, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -55,7 +55,7 @@ export const Cart = () => {
           aria-label="Abrir carrinho"
           className="relative cursor-pointer"
         >
-          <ShoppingBasketIcon />
+          <ShoppingBag />
           {totalCount > 0 && (
             <span className="bg-primary absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full text-[10px] font-semibold text-white">
               {totalCount > 9 ? "9+" : totalCount}
