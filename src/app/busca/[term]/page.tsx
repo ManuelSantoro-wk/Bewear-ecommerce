@@ -44,7 +44,6 @@ export default async function SearchPage({
           ))}
         </div>
       </main>
-      <Footer />
     </>
   );
 }

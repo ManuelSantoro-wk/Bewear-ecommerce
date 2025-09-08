@@ -1,4 +1,5 @@
 import { desc } from "drizzle-orm";
+import Script from "next/script";
 
 import BrandCarousel from "@/components/common/brand-carousel";
 import CategorySelector from "@/components/common/category-selector";
@@ -8,7 +9,6 @@ import ProductList from "@/components/common/product-list";
 import PromoGrid from "@/components/common/promo-grid";
 import { db } from "@/db";
 import { productTable } from "@/db/schema";
-import Script from "next/script";
 
 const Home = async () => {
   const products = await db.query.productTable.findMany({

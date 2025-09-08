@@ -70,13 +70,13 @@ export default function SearchCommand({
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
       <CommandInput
-        placeholder="Busque por produtos..."
+        placeholder="Procurar produtos…"
         value={query}
         onValueChange={setQuery}
         onKeyDown={handleEnter}
       />
       <CommandList>
-        <CommandEmpty>Digite para buscar…</CommandEmpty>
+        <CommandEmpty>Procurar produtos…</CommandEmpty>
 
         {results.length > 0 && (
           <CommandGroup heading="Sugestões">

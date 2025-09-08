@@ -78,9 +78,9 @@ export default function Orders({ orders }: OrderProps) {
         <Card className="rounded-2xl border-slate-200 shadow-xl">
           <CardContent className="flex flex-col items-center gap-3 py-12">
             <Package2 className="h-8 w-8" />
-            <p className="text-base font-medium">Você ainda não tem pedidos</p>
+            <p className="text-base font-medium">Ainda não tens pedidos</p>
             <p className="text-sm text-slate-500">
-              Assim que você finalizar uma compra, seus pedidos aparecerão aqui.
+              Assim que finalizes uma compra, os seus pedidos aparecerão aqui.
             </p>
           </CardContent>
         </Card>
@@ -92,7 +92,7 @@ export default function Orders({ orders }: OrderProps) {
     <div className="space-y-4">
       <div className="px-1">
         <h1 className="text-lg font-semibold tracking-tight md:text-2xl">
-          Meus pedidos
+          Os Meus pedidos
         </h1>
       </div>
 
