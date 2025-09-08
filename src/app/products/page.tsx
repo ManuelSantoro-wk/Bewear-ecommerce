@@ -1,7 +1,6 @@
 // src/app/products/page.tsx
 import { and, desc, eq, ne, sql } from "drizzle-orm";
 
-import Footer from "@/components/common/footer";
 import { Header } from "@/components/common/header";
 import ProductItem from "@/components/common/product-item";
 import { db } from "@/db";

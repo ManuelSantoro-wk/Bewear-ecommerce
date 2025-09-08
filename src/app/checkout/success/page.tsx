@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 import { Header } from "@/components/common/header";
 import { Button } from "@/components/ui/button";
@@ -14,12 +15,13 @@ import {
 } from "@/components/ui/dialog";
 
 const CheckoutSuccessPage = () => {
+  const [open, setOpen] = useState(true); // começa aberto
+
   return (
     <>
       <Header />
 
-      {/* Mantemos o Dialog sempre aberto nesta página dedicada */}
-      <Dialog open onOpenChange={() => {}}>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="rounded-2xl text-center sm:max-w-md md:max-w-lg">
           <Image
             src="/illustration.svg"

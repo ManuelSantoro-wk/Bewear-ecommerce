@@ -263,7 +263,6 @@ export const Header = () => {
             <Cart />
           </div>
         </div>
-
         {/* nav desktop */}
         <nav className="hidden items-center justify-center gap-6 pb-3 text-sm text-slate-700 md:flex">
           {NAV.map((item) => {
