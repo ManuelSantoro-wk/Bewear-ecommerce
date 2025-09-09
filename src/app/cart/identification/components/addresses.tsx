@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import cep from "cep-promise";
+import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -32,6 +33,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { shippingAddressTable } from "@/db/schema";
 import { useCreateShippingAddress } from "@/hooks/mutations/use-create-shipping-address";
+import { useDeleteShippingAddress } from "@/hooks/mutations/use-Delete-Shipping-Address";
 import { useUpdateCartShippingAddress } from "@/hooks/mutations/use-update-cart-shipping-address";
 import { useUserAddresses } from "@/hooks/queries/use-user-addresses";
 
@@ -86,6 +88,8 @@ const Addresses = ({
     defaultShippingAddressId || null,
   );
 
+  // Eliminar Morada
+  const deleteShippingAddressMutation = useDeleteShippingAddress();
   // Modal/edição
   const [editOpen, setEditOpen] = useState(false);
   const [editingAddress, setEditingAddress] = useState<
@@ -325,6 +329,20 @@ const Addresses = ({
                       aria-label="Editar morada"
                     >
                       Editar
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="cursor-pointer rounded-full" // reduz o padding para ficar quadrado
+                      onClick={async () => {
+                        await deleteShippingAddressMutation.mutateAsync(
+                          address.id,
+                        );
+                        window.location.reload(); // força F5
+                      }}
+                      aria-label="Eliminar morada"
+                    >
+                      <Trash2 className="h-4 w-4" />{" "}
                     </Button>
                   </CardContent>
                 </Card>
@@ -583,7 +601,7 @@ const Addresses = ({
                 <div className="flex items-center gap-3">
                   <Button
                     type="submit"
-                    className="w-full rounded-full"
+                    className="w-full cursor-pointer rounded-full"
                     disabled={isSubmittingAny}
                   >
                     {isSubmittingAny ? "Salvando..." : "Salvar morada"}
