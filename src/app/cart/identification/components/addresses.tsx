@@ -317,33 +317,34 @@ const Addresses = ({
                         </p>
                       </Label>
                     </div>
-
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="cursor-pointer rounded-full"
-                      onClick={() => {
-                        setEditingAddress(address);
-                        setEditOpen(true);
-                      }}
-                      aria-label="Editar morada"
-                    >
-                      Editar
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="cursor-pointer rounded-full" // reduz o padding para ficar quadrado
-                      onClick={async () => {
-                        await deleteShippingAddressMutation.mutateAsync(
-                          address.id,
-                        );
-                        window.location.reload(); // força F5
-                      }}
-                      aria-label="Eliminar morada"
-                    >
-                      <Trash2 className="h-4 w-4" />{" "}
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="cursor-pointer rounded-full"
+                        onClick={() => {
+                          setEditingAddress(address);
+                          setEditOpen(true);
+                        }}
+                        aria-label="Editar morada"
+                      >
+                        Editar
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="cursor-pointer rounded-full" // reduz o padding para ficar quadrado
+                        onClick={async () => {
+                          await deleteShippingAddressMutation.mutateAsync(
+                            address.id,
+                          );
+                          window.location.reload(); // força F5
+                        }}
+                        aria-label="Eliminar morada"
+                      >
+                        <Trash2 className="h-4 w-4" />{" "}
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
