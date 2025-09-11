@@ -677,10 +677,6 @@ const Addresses = ({
                           onValueChange={(vals) =>
                             field.onChange(vals.formattedValue)
                           }
-                          onBlur={async () => {
-                            field.onBlur?.();
-                            await handleCodigoPostalBlurEdit();
-                          }}
                         />
                       </FormControl>
                       <FormMessage />
