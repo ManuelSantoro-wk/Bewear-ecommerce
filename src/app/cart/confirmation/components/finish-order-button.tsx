@@ -49,7 +49,7 @@ const FinishOrderButton = () => {
         {finishOrderMutation.isPending && (
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         )}
-        <Visa /> Credit/Debit Card
+        <Visa style={{ width: 23 }} /> Credit/Debit Card
       </Button>
 
       <Dialog open={successDialogIsOpen} onOpenChange={setSuccessDialogIsOpen}>

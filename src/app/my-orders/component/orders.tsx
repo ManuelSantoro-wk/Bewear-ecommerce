@@ -14,6 +14,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { orderTable } from "@/db/schema";
 
+import RepeatOrderButton from "./repeat-order-button";
+
 interface OrderItem {
   id: string;
   imageUrl: string;
@@ -194,6 +196,14 @@ export default function Orders({ orders }: OrderProps) {
                             "pt-BR",
                             { hour: "2-digit", minute: "2-digit" },
                           )}
+                        </div>
+                        <div className="pt-3">
+                          <RepeatOrderButton
+                            items={order.items.map((item) => ({
+                              productVariantId: item.productVariantId, // vem agora do page.tsx
+                              quantity: item.quantity,
+                            }))}
+                          />
                         </div>
                       </div>
                     </div>

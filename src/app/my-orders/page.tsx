@@ -44,6 +44,7 @@ const MyOrdersPage = async () => {
             status: order.status,
             items: order.items.map((item) => ({
               id: item.id,
+              productVariantId: item.productVariantId, // 🔥 agora incluímos o ID do variant
               imageUrl: item.productVariant.imageUrl,
               productName: item.productVariant.product.name,
               productVariantName: item.productVariant.name,
