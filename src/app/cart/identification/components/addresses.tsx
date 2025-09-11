@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import cep from "cep-promise";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -163,48 +162,6 @@ const Addresses = ({
       state: (editingAddress.state ?? "").toUpperCase(),
     });
   }, [editingAddress, editForm]);
-
-  // Código Postal Auto-complete: criar
-  const handleCodigoPostalBlurCreate = async () => {
-    const v = form.getValues("zipCode");
-    if (!PT_ZIP_RGX.test(v)) return;
-    try {
-      setIsFetchingCodigoPostalCreate(true);
-      const result = await cep(v.replace("-", ""));
-      form.setValue("address", result.street || "");
-      form.setValue("neighborhood", result.neighborhood || "");
-      form.setValue("city", result.city || "");
-      form.setValue("state", (result.state || "").toUpperCase());
-    } catch (err) {
-      toast.error(
-        "Não foi possível buscar o Código Postal. Verifique e tente novamente.",
-      );
-      console.error(err);
-    } finally {
-      setIsFetchingCodigoPostalCreate(false);
-    }
-  };
-
-  // Código Postal Auto-complete: editar
-  const handleCodigoPostalBlurEdit = async () => {
-    const v = editForm.getValues("zipCode");
-    if (!PT_ZIP_RGX.test(v)) return;
-    try {
-      setIsFetchingCodigoPostalEdit(true);
-      const result = await cep(v.replace("-", ""));
-      editForm.setValue("address", result.street || "");
-      editForm.setValue("neighborhood", result.neighborhood || "");
-      editForm.setValue("city", result.city || "");
-      editForm.setValue("state", (result.state || "").toUpperCase());
-    } catch (err) {
-      toast.error(
-        "Não foi possível buscar o Código Postal. Verifique e tente novamente.",
-      );
-      console.error(err);
-    } finally {
-      setIsFetchingCodigoPostalEdit(false);
-    }
-  };
 
   // Criar morada
   const onSubmitCreate = async (values: FormValues) => {
@@ -478,10 +435,6 @@ const Addresses = ({
                             onValueChange={(vals) =>
                               field.onChange(vals.formattedValue)
                             }
-                            onBlur={async () => {
-                              field.onBlur?.();
-                              await handleCodigoPostalBlurCreate();
-                            }}
                           />
                         </FormControl>
                         <FormMessage />
@@ -603,6 +556,7 @@ const Addresses = ({
                   <Button
                     type="submit"
                     className="w-full cursor-pointer rounded-full"
+                    onClick={() => window.location.reload()}
                     disabled={isSubmittingAny}
                   >
                     {isSubmittingAny ? "Salvando..." : "Salvar morada"}
@@ -833,7 +787,7 @@ const Addresses = ({
                 <Button
                   type="button"
                   variant="outline"
-                  className="rounded-full"
+                  className="cursor-pointer rounded-full"
                   onClick={() => {
                     setEditOpen(false);
                     setEditingAddress(null);
@@ -843,7 +797,8 @@ const Addresses = ({
                 </Button>
                 <Button
                   type="submit"
-                  className="rounded-full"
+                  className="cursor-pointer rounded-full"
+                  onClick={() => window.location.reload()}
                   disabled={isSavingEdit}
                 >
                   {isSavingEdit ? "Salvando..." : "Salvar alterações"}
