@@ -21,6 +21,7 @@ interface OrderItem {
   imageUrl: string;
   productName: string;
   productVariantName: string;
+  productVariantId: string;
   quantity: number;
   priceInCents: number;
   createdAt: Date | string | number;
