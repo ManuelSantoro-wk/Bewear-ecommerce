@@ -25,18 +25,34 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
+function getPasswordStrength(password: string) {
+  let score = 0;
 
+  if (password.length >= 8) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[a-z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+
+  return score; // 0 a 5
+}
 const formSchema = z
   .object({
     name: z.string().trim().min(1, "Nome é obrigatório"),
     email: z.string().email("Email inválido").nonempty("Email é obrigatório"),
-    password: z.string().min(8, "Senha deve ter pelo menos 8 caracteres"),
+    password: z
+      .string()
+      .min(8, "Senha deve ter pelo menos 8 caracteres")
+      .regex(/[A-Z]/, "A senha deve conter pelo menos uma letra maiúscula")
+      .regex(/[a-z]/, "A senha deve conter pelo menos uma letra minúscula")
+      .regex(/[0-9]/, "A senha deve conter pelo menos um número")
+      .regex(/[^A-Za-z0-9]/, "A senha deve conter pelo menos um símbolo"),
     passwordConfirmation: z
       .string()
       .min(8, "Confirmação de senha é obrigatória"),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
-    error: "As senhas não coincidem",
+    message: "As senhas não coincidem",
     path: ["passwordConfirmation"],
   });
 
@@ -125,23 +141,56 @@ const SignUpForm = () => {
               )}
             />
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid items-start gap-6 md:grid-cols-2">
               <FormField
                 control={form.control}
                 name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Senha</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Password"
-                        type="password"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  const strength = getPasswordStrength(field.value);
+                  const strengthPercent = (strength / 5) * 100;
+
+                  return (
+                    <FormItem>
+                      <FormLabel>Senha</FormLabel>
+                      <FormControl>
+                        <div className="space-y-2">
+                          <Input
+                            placeholder="Password"
+                            type="password"
+                            {...field}
+                          />
+                          {/* Barra de força */}
+                          <div className="h-2 w-full rounded-full bg-gray-200">
+                            <div
+                              className={`h-2 rounded-full transition-all duration-300 ${
+                                strength <= 2
+                                  ? "bg-red-500"
+                                  : strength === 3
+                                    ? "bg-yellow-500"
+                                    : "bg-green-500"
+                              }`}
+                              style={{ width: `${strengthPercent}%` }}
+                            />
+                          </div>
+                          <p className="text-sm text-gray-500">
+                            Força:{" "}
+                            {
+                              [
+                                "Muito fraca",
+                                "Fraca",
+                                "Média",
+                                "Boa",
+                                "Forte",
+                                "Excelente",
+                              ][strength]
+                            }
+                          </p>
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
 
               <FormField
