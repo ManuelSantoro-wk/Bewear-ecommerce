@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
@@ -30,6 +30,7 @@ import { authClient } from "@/lib/auth-client";
 const formSchema = z.object({
   email: z.email("E-mail inválido!"),
   password: z.string("Senha inválida!").min(8, "Senha inválida!"),
+  remember: z.boolean().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -40,12 +41,33 @@ const SignInForm = () => {
   const [loadingGoogle, setLoadingGoogle] = useState(false);
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "", password: "", remember: false },
   });
+
+  // Preencher e-mail e senha se estiverem guardados
+  useEffect(() => {
+    const rememberedEmail = localStorage.getItem("rememberedEmail");
+    const rememberedPassword = localStorage.getItem("rememberedPassword");
+    if (rememberedEmail && rememberedPassword) {
+      form.setValue("email", rememberedEmail);
+      form.setValue("password", atob(rememberedPassword));
+      form.setValue("remember", true);
+    }
+  }, [form]);
 
   async function onSubmit(values: FormValues) {
     try {
       setLoadingEmail(true);
+
+      // Guardar ou remover e-mail e senha do localStorage
+      if (values.remember) {
+        localStorage.setItem("rememberedEmail", values.email);
+        localStorage.setItem("rememberedPassword", btoa(values.password));
+      } else {
+        localStorage.removeItem("rememberedEmail");
+        localStorage.removeItem("rememberedPassword");
+      }
+
       await authClient.signIn.email({
         email: values.email,
         password: values.password,
@@ -95,6 +117,7 @@ const SignInForm = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <CardContent className="grid gap-6">
+            {/* Email */}
             <FormField
               control={form.control}
               name="email"
@@ -109,6 +132,7 @@ const SignInForm = () => {
               )}
             />
 
+            {/* Password */}
             <FormField
               control={form.control}
               name="password"
@@ -145,6 +169,28 @@ const SignInForm = () => {
                 );
               }}
             />
+
+            {/* Remember me */}
+            <FormField
+              control={form.control}
+              name="remember"
+              render={({ field }) => (
+                <FormItem className="flex items-center space-x-2">
+                  <FormControl>
+                    <input
+                      type="checkbox"
+                      id="remember"
+                      className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      checked={field.value ?? false} // <- garantir que nunca seja undefined
+                      onChange={(e) => field.onChange(e.target.checked)}
+                    />
+                  </FormControl>
+                  <FormLabel htmlFor="remember" className="mb-0">
+                    Lembrar-me
+                  </FormLabel>
+                </FormItem>
+              )}
+            />
           </CardContent>
 
           <CardFooter className="flex flex-col gap-2">
@@ -177,8 +223,23 @@ const SignInForm = () => {
                 </>
               ) : (
                 <>
-                  <svg viewBox="0 0 24 24" className="mr-2 h-4 w-4">
-                    {/* paths do Google */}
+                  <svg viewBox="0 0 533.5 544.3" className="mr-2 h-4 w-4">
+                    <path
+                      fill="#4285F4"
+                      d="M533.5 278.4c0-17.4-1.6-34-4.7-50.2H272v95h147.1c-6.4 34-25.7 62.7-54.6 82l88.3 68c51.5-47.5 81.7-117.6 81.7-194.8z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M272 544.3c73.4 0 134.9-24.3 179.8-66l-88.3-68c-24.5 16.5-55.8 26-91.5 26-70.3 0-129.8-47.4-151-111.2l-89.3 69.1c44.5 88.3 136.4 150.1 240.3 150.1z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M121 323.2c-10.6-31.5-10.6-65.7 0-97.2l-89.3-69.1C3.6 221 0 247.5 0 278.4s3.6 57.5 31.7 121.5l89.3-69.1z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M272 109.7c37.7-.6 73.7 13.5 101.2 38.8l76-76.2C403 25.6 344.6 0 272 0 168.1 0 76.2 61.8 31.7 150.1l89.3 69.1c21.2-63.8 80.7-111.2 151-111.5z"
+                    />
                   </svg>
                   Entrar com Google
                 </>
